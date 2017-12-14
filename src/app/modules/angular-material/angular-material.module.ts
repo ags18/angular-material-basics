@@ -7,10 +7,16 @@ import {
   MatFormFieldModule,
   MatButtonModule,
   MatTableModule,
-  MatPaginatorModule,
-  MatSortModule,
   MatSelectModule,
-  MatOptionModule
+  MatOptionModule,
+  MatRadioModule,
+  MatCheckboxModule,
+  MatSlideToggleModule,
+  MatSliderModule,
+  MatAutocompleteModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+
 
 } from '@angular/material'
 @NgModule({
@@ -23,10 +29,15 @@ import {
     MatInputModule,
     MatFormFieldModule,
     MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
+    MatRadioModule,
+    MatCheckboxModule,
+    MatSlideToggleModule,
+    MatSliderModule,
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   declarations: []
 })

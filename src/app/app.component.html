@@ -1,15 +1,45 @@
+<h2>employee</h2>
 <div class="example-container">
-  <mat-form-field>
-    <input matInput placeholder="Input">
-  </mat-form-field>
 
-  <mat-form-field>
-    <textarea matInput placeholder="Textarea"></textarea>
-  </mat-form-field>
+  <form [formGroup]="employeeForm">
+      <mat-form-field>
+          <input matInput placeholder="fname" formControlName="fname">
+      </mat-form-field>
 
-  <mat-form-field>
-    <mat-select placeholder="Select">
-      <mat-option value="option">Option</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
+      <mat-form-field>
+          <textarea matInput placeholder="jobDesp" formControlName="jobDesp"></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+          <mat-select placeholder="Select" formControlName="city">
+            <mat-option *ngFor="let city of cities" [value]="city">{{city}}</mat-option>
+          </mat-select>
+      </mat-form-field>
+
+      <mat-radio-group>
+        <mat-radio-button value="female" formControlName="gender">female</mat-radio-button>
+        <mat-radio-button value="male" formControlName="gender">male</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="joiningDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-slide-toggle formControlName="slide">Slide me!</mat-slide-toggle>
+      <mat-slider formControlName="slider"></mat-slider>
+
+      <mat-autocomplete #auto="matAutocomplete" formControlName="autoComp">
+          <mat-optgroup *ngFor="let city of cities | async" [label]="group.name">
+            <mat-option *ngFor="let option of group.options" [value]="option">
+              {{ option.name }}
+            </mat-option>
+          </mat-optgroup>
+        </mat-autocomplete>
+
+        <mat-checkbox formControlName="terms" >I accept terms and conditions</mat-checkbox>
+
+        <button class="btn btn-info" [disabled]="!employeeForm.valid" (click)="gotoEmployees();">{{id?"Edit":"Add"}}</button>
+      </form>
+    </div>

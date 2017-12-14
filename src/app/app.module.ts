@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
 import { AngularMaterialModule } from './modules/angular-material/angular-material.module';
+import { AppService } from './app.service';
 
 
 @NgModule({
@@ -13,8 +15,11 @@ import { AngularMaterialModule } from './modules/angular-material/angular-materi
   imports: [
     BrowserModule,
     AngularMaterialModule,
+    FormsModule,
+    ReactiveFormsModule
+
   ],
-  providers: [],
+  providers: [AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
