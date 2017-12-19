@@ -1,7 +1,6 @@
-<h2>employee</h2>
 
-  {{employeeForm.value | json}}
-  <form [formGroup]="employeeForm" class="example-container">
+<form [formGroup]="employeeForm" class="example-container  mat-elevation-z8">
+    <div class="head">Employee Form</div>
     <mat-form-field>
       <input matInput placeholder="fname" formControlName="fname">
     </mat-form-field>
@@ -16,7 +15,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-radio-group formControlName="gender">
+    <mat-radio-group formControlName="gender" aria-label="gender" >
       <mat-radio-button value="female">female</mat-radio-button>
       <mat-radio-button value="male">male</mat-radio-button>
     </mat-radio-group>
@@ -27,66 +26,80 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
-    <mat-slide-toggle formControlName="slide">Slide me!</mat-slide-toggle>
-    <mat-slider formControlName="slider"></mat-slider>
+    <mat-slide-toggle formControlName="slide">Do you want to rate us??</mat-slide-toggle>
+    
+    <mat-slider formControlName="slider" [disabled]="!employeeForm.get('slide').value"></mat-slider>{{employeeForm.get('slider').value}}
 
     <mat-form-field>
-      <input type="text" matInput formControlName="autoComp" [matAutocomplete]="auto">
+      <input type="text" matInput formControlName="autoComp" [matAutocomplete]="auto" placeholder="Hobbies" aria-label="Hobbies" >
 
       <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let city of cities" [value]="city">
-          {{ city }}
+        <mat-option *ngFor="let hobby of filteredHobbies|async" [value]="hobby">
+          {{ hobby}}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
     <mat-checkbox formControlName="terms">I accept terms and conditions</mat-checkbox>
 
-    <button mat-button class="btn btn-info" [disabled]="!employeeForm.valid" (click)="gotoEmployees();">{{id?"Edit":"Add"}}</button>
+    <button mat-button class="btn btn-info" [disabled]="!employeeForm.valid" (click)="gotoEmployees();employeeForm.reset();">{{id?"Edit":"Add"}}</button>
   </form>
 
-        <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" 
-            public id: number, 
-    public fname: string,
-    public jobDesp: string,
-    public city: string,
-    public gender: string,
-    public joiningDate: string,
-    public slide: string,
-    public autoComp: string,
-    public terms: string,
-            -->
 
-<div class="example-container mat-elevation-z8">
+<div [hidden]="!submitted">
     <mat-table #table [dataSource]="dataSource">
-  
-      <!--- Note that these columns can be defined in any order.
-            The actual rendered columns are set as a property on the row definition" -->
-  
-      <!-- Position Column -->
+
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
         <mat-cell *matCellDef="let employee"> {{employee.id}} </mat-cell>
       </ng-container>
   
-      <!-- Name Column -->
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
         <mat-cell *matCellDef="let employee"> {{employee.fname}} </mat-cell>
       </ng-container>
   
-      <!-- Weight Column -->
+      <ng-container matColumnDef="jobDesp">
+        <mat-header-cell *matHeaderCellDef> jobDesp </mat-header-cell>
+        <mat-cell *matCellDef="let employee"> {{employee.jobDesp}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="city">
+        <mat-header-cell *matHeaderCellDef> City </mat-header-cell>
+        <mat-cell *matCellDef="let employee"> {{employee.city}} </mat-cell>
+      </ng-container>
+      
       <ng-container matColumnDef="gender">
-        <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> gender </mat-header-cell>
         <mat-cell *matCellDef="let employee"> {{employee.gender}} </mat-cell>
       </ng-container>
-  
-      <!-- Symbol Column -->
+
       <ng-container matColumnDef="joiningDate">
-        <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> City </mat-header-cell>
         <mat-cell *matCellDef="let employee"> {{employee.joiningDate}} </mat-cell>
       </ng-container>
-  
+
+      <ng-container matColumnDef="slide">
+        <mat-header-cell *matHeaderCellDef> slide </mat-header-cell>
+        <mat-cell *matCellDef="let employee"> {{employee.slide}} </mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="slider">
+        <mat-header-cell *matHeaderCellDef> slider </mat-header-cell>
+        <mat-cell *matCellDef="let employee"> {{employee.slider}} </mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="autoComp">
+        <mat-header-cell *matHeaderCellDef> autoComp </mat-header-cell>
+        <mat-cell *matCellDef="let employee"> {{employee.autoComp}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="terms">
+        <mat-header-cell *matHeaderCellDef> terms </mat-header-cell>
+        <mat-cell *matCellDef="let employee"> {{employee.terms}} </mat-cell>
+      </ng-container>
+
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>

@@ -12,6 +12,7 @@ export class Employee {
     public gender: string,
     public joiningDate: string,
     public slide: string,
+    public slider: string,
     public autoComp: string,
     public terms: string,
     
@@ -19,9 +20,28 @@ export class Employee {
 }
 
 const EMPLOYEES = [
-  new Employee(11, 'June','Assistant','CA','female','2016-12-13','1','something','true'),
+  //new Employee(11, 'June','Assistant','CA','female','2016-12-13','1','9','something','true'),
 
 ];
+
+export const hobbies=['art','music','adventure'];
+  //   {
+  //     name: 'Arkansas',
+  //     population: '2.978M',     
+  //   },
+  //   {
+  //     name: 'California',
+  //     population: '39.14M',
+  //   },
+  //   {
+  //     name: 'Florida',
+  //     population: '20.27M',
+  //   },
+  //   {
+  //     name: 'Texas',
+  //     population: '27.47M',
+  //   }
+  // ];
 
 export const cities = ['CA', 'MD', 'OH', 'VA'];
 
